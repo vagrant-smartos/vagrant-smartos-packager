@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Configurables:
+#
+#  - Disk size is in GB
+#  - Memory size is in MB
+#  - SSH port is the local forwarded port to the VM:22
+#
+# props: http://www.perkin.org.uk/posts/automated-virtualbox-smartos-installs.html
+
+. support/latest_platform_image.sh
+
+usage() {
+  echo "$0 [options]"
+  echo "  -d --disksize   Size of disk in GB (default 32)"
+  echo "  -m --memsize    Memory to allocate in MB (default 1024)"
+  echo "  -p --sshport    SSH port to forward (default 2222)"
+}
+
+DISKSIZE="32"
+MEMSIZE="1024"
+SSHPORT="2222"
+
+while getopts ":d:m:p:" arg; do
+  case "$arg" in
+    d) DISKSIZE=${OPTARG} ;;
+    m) MEMSIZE=${OPTARG} ;;
+    p) SSHPORT=${OPTARG} ;;
+    *) usage; exit;;
+  esac
+done
+
+vmname=$(smartos_vmname)
+
+download_smartos_ISO
+create_smartos_VM $DISKSIZE $MEMSIZE $SSHPORT
+
+echo "Starting Virtual Machine"
+VirtualBox --startvm "${vmname}" &

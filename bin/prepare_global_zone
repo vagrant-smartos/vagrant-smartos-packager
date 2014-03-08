@@ -1,0 +1,22 @@
+# curl -k https://gist.githubusercontent.com/sax/9138190/raw/prepare_global_zone | bash -s
+
+echo "*************************************************************"
+echo "Updating system to allow user modification"
+mkdir -p /opt/custom/smf
+mkdir -p /opt/custom/method
+
+curl --silent -k https://gist.githubusercontent.com/sax/9138190/raw/install-userfiles -o /opt/custom/method/install-userfiles
+curl --silent -k https://gist.githubusercontent.com/sax/9138190/raw/install-userfiles.xml -o /opt/custom/smf/install-userfiles.xml
+curl --silent -k https://gist.githubusercontent.com/sax/9138190/raw/persist-userfiles -o /opt/custom/method/persist-userfiles
+curl --silent -k https://gist.githubusercontent.com/sax/9138190/raw/persist-userfiles.xml -o /opt/custom/smf/persist-userfiles.xml
+
+chmod -R +x /opt/custom/method
+echo "*************************************************************"
+echo "In order to use tools such as usermod, please do the following:"
+echo "  svcadm disable -s persist-userfiles"
+echo "  useradd ..."
+echo "  svcadm enable -s persist-userfiles"
+echo
+echo
+echo "*************************************************************"
+echo "Now reboot to ensure that everything is kosher."

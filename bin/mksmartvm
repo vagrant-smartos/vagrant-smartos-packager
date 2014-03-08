@@ -35,5 +35,8 @@ vmname=$(smartos_vmname)
 download_smartos_ISO
 create_smartos_VM $DISKSIZE $MEMSIZE $SSHPORT
 
+echo
 echo "Starting Virtual Machine"
+echo "  Hint: use defaults"
+echo "  Hint: set root password to 'vagrant'"
 VirtualBox --startvm "${vmname}" &

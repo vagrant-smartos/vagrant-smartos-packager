@@ -53,3 +53,13 @@ Now stop the VM, and run the following command to load it into Vagrant:
 ./bin/boxify
 ```
 
+## Vagrant configurations
+
+#### synced folders
+
+The SmartOS global zone mounts / as a ramdisk with a size of 262M. When
+using type `rsync`, to sync the local directory into the global zone,
+ensure that it is very lightweight.
+
+Synced folders of type `nfs` will work, pending a pull request on
+Vagrant.

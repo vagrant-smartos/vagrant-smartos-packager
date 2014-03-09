@@ -13,6 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "https://us-east.manta.joyent.com/wanelo/public/cache/vagrant/boxes/SmartOS-20140221T042147Z.box"
 
   #config.vm.network "private_network", ip: "192.168.50.4"
+  #config.vm.synced_folder ".", "/vagrant", type: "nfs"
   config.vm.synced_folder ".", "/vagrant", type: "rsync"
 
   config.vm.provision "shell",

@@ -17,7 +17,7 @@ echo "Setting password for root  user. Please set it to 'vagrant'"
 passwd root
 
 echo "*************************************************************"
-echo "Installing pkgin
+echo "Installing pkgin"
 cd /
 curl --silent -k http://pkgsrc.joyent.com/packages/SmartOS/bootstrap/bootstrap-2013Q3-x86_64.tar.gz | gzcat | tar -xf -
 pkg_admin rebuild

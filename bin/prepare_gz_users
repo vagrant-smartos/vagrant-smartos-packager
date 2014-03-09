@@ -17,6 +17,17 @@ echo "Setting password for root  user. Please set it to 'vagrant'"
 passwd root
 
 echo "*************************************************************"
+echo "Installing pkgin
+cd /
+curl --silent -k http://pkgsrc.joyent.com/packages/SmartOS/bootstrap/bootstrap-2013Q3-x86_64.tar.gz | gzcat | tar -xf -
+pkg_admin rebuild
+pkgin -y up
+
+echo "*************************************************************"
+echo "Installing packages"
+pkgin -y install sudo
+
+echo "*************************************************************"
 echo "Switching system back into non-user modifiable state"
 svcadm enable -s persist-userfiles
 

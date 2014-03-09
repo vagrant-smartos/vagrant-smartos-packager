@@ -4,11 +4,13 @@ mkdir -p /opt/custom/smf
 mkdir -p /opt/custom/method
 mkdir -p /usbkey/bin
 
-curl --silent -k https://github.com/sax/vagrant-smartos-packager/master/files/sudo -o /usbkey/bin/sudo
-curl --silent -k https://github.com/sax/vagrant-smartos-packager/master/files/install-userfiles -o /opt/custom/method/install-userfiles
-curl --silent -k https://github.com/sax/vagrant-smartos-packager/master/files/install-userfiles.xml -o /opt/custom/smf/install-userfiles.xml
-curl --silent -k https://github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles -o /opt/custom/method/persist-userfiles
-curl --silent -k https://github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles.xml -o /opt/custom/smf/persist-userfiles.xml
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/sudo -o /usbkey/bin/sudo
+
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-userfiles -o /opt/custom/method/install-userfiles
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-userfiles.xml -o /opt/custom/smf/install-userfiles.xml
+
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles -o /opt/custom/method/persist-userfiles
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles.xml -o /opt/custom/smf/persist-userfiles.xml
 
 chmod -R +x /opt/custom/method
 chmod -R +x /usbkey/bin

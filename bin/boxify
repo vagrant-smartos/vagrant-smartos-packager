@@ -1,0 +1,13 @@
+#!/bin/bash
+
+. support/latest_platform_image.sh
+
+vmname=$(smartos_vmname)
+
+mkdir -p pkg
+
+vagrant box remove ${vmname}
+rm -f pkg/${vmname}.box
+vagrant package --base ${vmname} --output pkg/${vmname}.box
+vagrant box add ${vmname} pkg/${vmname}.box
+

@@ -17,11 +17,6 @@ case "$1" in
     if [[ -e /usbkey/user_attr ]]; then
       cp /usbkey/user_attr /etc/user_attr
     fi
-
-    mkdir -p /opt/local/bin
-    chmod 0755 /opt/local/bin
-    touch /opt/local/bin/sudo
-    mount -F lofs /usbkey/bin/sudo /opt/local/bin/sudo
   fi
   ;;
 esac

@@ -18,14 +18,19 @@ passwd root
 
 echo "*************************************************************"
 echo "Installing pkgin"
-cd /
-curl --silent -k http://pkgsrc.joyent.com/packages/SmartOS/bootstrap/bootstrap-2013Q3-x86_64.tar.gz | gzcat | tar -xf -
-pkg_admin rebuild
+if [[ -z "$(which pkg_admin)" ]]; then
+  cd /
+  curl --silent -k http://pkgsrc.joyent.com/packages/SmartOS/bootstrap/bootstrap-2013Q3-x86_64.tar.gz | gzcat | tar -xf -
+  pkg_admin rebuild
+fi
 pkgin -y up
 
 echo "*************************************************************"
-echo "Installing packages"
+echo "Installing sudo"
 pkgin -y install sudo
+echo "vagrant ALL=(ALL) NOPASSWD: ALL" >
+/opt/local/etc/sudoers.d/vagrant
+chmod 0440 /opt/local/etc/sudoers.d/vagrant
 
 echo "*************************************************************"
 echo "Switching system back into non-user modifiable state"

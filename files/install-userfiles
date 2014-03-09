@@ -18,7 +18,10 @@ case "$1" in
       cp /usbkey/user_attr /etc/user_attr
     fi
 
-    mount -F lofs /usbkey/bin/sudo /usr/bin/sudo
+    mkdir -p /opt/local/bin
+    chmod 0755 /opt/local/bin
+    touch /opt/local/bin/sudo
+    mount -F lofs /usbkey/bin/sudo /opt/local/bin/sudo
   fi
   ;;
 esac

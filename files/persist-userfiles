@@ -1,0 +1,44 @@
+#!/usr/bin/bash
+
+# See http://wiki.smartos.org/display/DOC/Persistent+Users+and+RBAC+in+the+Global+Zone
+
+persistent_files=( /etc/passwd /etc/shadow /etc/group /etc/ouser_attr /etc/user_attr \
+                   /etc/security/policy.conf /etc/security/auth_attr \
+                   /etc/security/exec_attr /etc/security/prof_attr )
+
+ukeystor="/usbkey"
+
+case "$1" in
+'start')
+  if [[ -n $(/bin/bootparams | grep '^smartos=true') ]]; then
+    for file in ${persistent_files[*]}; do
+      ukf=${ukeystor}/$(basename $file)
+      if [[ -z $(/usr/sbin/mount -p | grep $file) ]]; then
+        if [[ $file -ot $ukf ]]; then
+          cp $ukf $file
+          echo "stor->sys: $file"
+        else
+          cp $file $ukf
+          echo "sys->stor: $file"
+        fi
+ 
+        touch $file $ukf
+        mount -F lofs $ukf $file
+      fi
+    done
+  fi
+  ;;
+'stop')
+  for file in ${persistent_files[*]}; do
+    if [[ -n $(/usr/sbin/mount -p | grep $file) ]]; then
+      umount $file && touch $file
+    fi
+  done
+  ;;
+*)
+  echo "Usage: $0 { start | stop }"
+  echo "  When disabled, users can be modified in the SmartOS global zone"
+  echo "  When enabled, users can not be modified"
+  exit 1
+  ;;
+esac

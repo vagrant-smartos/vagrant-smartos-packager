@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+
+userfiles=( /etc/passwd /etc/shadow /etc/group /etc/ouser_attr /etc/user_attr \
+            /etc/security/policy.conf /etc/security/auth_attr \
+            /etc/security/exec_attr /etc/security/prof_attr )
+
+case "$1" in
+'start')
+  if [[ -n $(/bin/bootparams | grep '^smartos=true') ]]; then
+    touch ${userfiles[@]}
+    sleep 1
+    for file in ${userfiles[*]}; do
+      ukf=/usbkey/$(basename ${file})
+      test -e $ukf && touch $ukf
+    done
+    
+    if [[ -e /usbkey/user_attr ]]; then
+      cp /usbkey/user_attr /etc/user_attr
+    fi
+
+    mount -F lofs /usbkey/bin/sudo /usr/bin/sudo
+  fi
+  ;;
+esac

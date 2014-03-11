@@ -8,6 +8,14 @@ mkdir -p pkg
 
 vagrant box remove ${vmname}
 rm -f pkg/${vmname}.box
-vagrant package --base ${vmname} --output pkg/${vmname}.box
-vagrant box add ${vmname} pkg/${vmname}.box
+
+echo -e "What should we call the box? [${vmname}] "
+read boxname
+
+if [ -z "$boxname" ]; then
+  boxname=${vmname}
+fi
+
+vagrant package --base ${vmname} --output pkg/${boxname}.box
+vagrant box add ${boxname} pkg/${boxname}.box
 

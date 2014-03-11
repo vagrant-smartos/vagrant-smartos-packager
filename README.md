@@ -47,6 +47,11 @@ curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_g
 This will create a vagrant user. By default Vagrant expects the vagrant
 user and root to have the password set to `vagrant`.
 
+If sudo will be required in the global zone, run the following command:
+```bash
+curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/install_sudo | bash -s
+```
+
 Now stop the VM, and run the following command to load it into Vagrant:
 
 ```bash

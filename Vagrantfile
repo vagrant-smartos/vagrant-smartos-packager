@@ -14,7 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   #config.vm.network "private_network", ip: "192.168.50.4"
   #config.vm.synced_folder ".", "/vagrant", type: "nfs"
-  config.vm.synced_folder ".", "/vagrant", type: "rsync"
+  config.vm.synced_folder ".", "/zones/vagrant", type: "rsync"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provision "shell",
     inline: %{

@@ -61,5 +61,15 @@ The SmartOS global zone mounts / as a ramdisk with a size of 262M. When
 using type `rsync`, to sync the local directory into the global zone,
 ensure that it is very lightweight.
 
+In order to use 'rsync' with a larger directory, you'll need to disable
+the normal mountpoint and create a new one on a persisted disk.
+
+```ruby
+config.vm.synced_folder ".", "/zones/vagrant", type: "rsync"
+config.vm.synced_folder ".", "/vagrant", disabled: true
+```
+
 Synced folders of type `nfs` will work, pending a pull request on
 Vagrant.
+
+

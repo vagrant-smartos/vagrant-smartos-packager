@@ -72,18 +72,28 @@ function smartos_vmname {
   echo "SmartOS-${version}"
 }
 
+function smartos_ISO_path {
+  local vboxdir=$(vbox_machine_folder)
+  local vmname=$(smartos_vmname)
+  local smartos_version=$(smartos_version)
+
+  echo "${vboxdir}/${vmname}/smartos-${smartos_version}.iso"
+}
+
 function download_smartos_ISO {
   local vboxdir=$(vbox_machine_folder)
   local vmname=$(smartos_vmname)
   local smartos_version=$(smartos_version)
   local smartos_md5=$(smartos_md5)
 
+  local iso_path=$(smartos_ISO_path)
+
   mkdir -p "${vboxdir}/${vmname}"
-  if [ ! -f "${vboxdir}/${vmname}/smartos-${smartos_version}.iso" ]; then
+  if [ ! -f "${iso_path}" ]; then
     echo "Downloading ${dlsite}/smartos-${smartos_version}.iso"
-    curl -o "${vboxdir}/${vmname}/smartos-${smartos_version}.iso" \
+    curl -o ${iso_path} \
             ${dlsite}/smartos-${smartos_version}.iso
-    dl_md5=$(${md5sum} "${vboxdir}/${vmname}/smartos-${smartos_version}.iso" \
+    dl_md5=$(${md5sum} "${iso_path}" \
                | awk '{ print $'${column}' }')
     if [ -z "${dl_md5}" ]; then
       echo "ERROR: Couldn't fetch ISO image"

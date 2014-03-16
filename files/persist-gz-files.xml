@@ -8,7 +8,7 @@
       <service_fmri value='svc:/system/filesystem/local'/>
     </dependency>
     <dependency name='userfiles' grouping='require_all' restart_on='error' type='service'>
-      <service_fmri value='svc:/site/install-userfiles'/>
+      <service_fmri value='svc:/site/install-gz-files'/>
     </dependency>
     <method_context/>
     <exec_method name='start' type='method' exec='/opt/custom/method/persist-gz-files start' timeout_seconds='60'/>

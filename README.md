@@ -24,9 +24,13 @@ a VirtualBox VM.
 When the VM spins up in VirtualBox, use the default networking
 options. Set the root password to be `vagrant`.
 
-Now log in to the console as root and run the following command.
-Unfortunately, the console will not allow for cut and paste, so
-it will need to be typed by hand.
+Now log in via ssh:
+
+```bash
+ssh localhost -p 2222 -l root
+```
+
+and run the following command:
 
 ```bash
 curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_global_zone | bash -s
@@ -37,8 +41,7 @@ image to ensure that users will persist between reboots. By default,
 everything except `/usbkey` and `/zones` and `/opt/custom` will reset
 between boots, so we have to do some tweaking.
 
-When the command finishes, reboot the VirtualBox image. Log in again,
-and run the following:
+Now run the following:
 
 ```bash
 curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_gz_users | bash -s

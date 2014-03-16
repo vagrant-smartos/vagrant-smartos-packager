@@ -18,6 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.synced_folder ".", "/zones/vagrant", type: "rsync"
 
   # Requires vagrant plugin at https://github.com/sax/vagrant-smartos-zones
+  config.global_zone.platform_image = '20140312T071408Z'
+
   config.zone.name = 'base64'
   config.zone.brand = 'joyent'
   config.zone.image = 'c353c568-69ad-11e3-a248-db288786ea63'

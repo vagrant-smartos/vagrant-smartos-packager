@@ -16,6 +16,6 @@ fi
 vagrant box remove ${boxname}
 rm -f pkg/${boxname}.box
 
-vagrant package --base ${vmname} --output pkg/${boxname}.box
+vagrant package --base ${vmname} --output pkg/${boxname}.box --vagrantfile Vagrantfile.bare
 vagrant box add ${boxname} pkg/${boxname}.box
 

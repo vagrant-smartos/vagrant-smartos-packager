@@ -3,13 +3,16 @@ echo "Updating system to allow user modification"
 mkdir -p /opt/custom/smf
 mkdir -p /opt/custom/method
 
-curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-userfiles -o /opt/custom/method/install-userfiles
-curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-userfiles.xml -o /opt/custom/smf/install-userfiles.xml
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-userfiles -o /opt/custom/method/install-gz-files
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-userfiles.xml -o /opt/custom/smf/install-gz-files.xml
 
-curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles -o /opt/custom/method/persist-userfiles
-curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles.xml -o /opt/custom/smf/persist-userfiles.xml
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles -o /opt/custom/method/persist-gz-files
+curl --silent -k https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-userfiles.xml -o /opt/custom/smf/persist-gz-files.xml
 
 chmod -R +x /opt/custom/method
+
+svccfg import /opt/custom/smf/install-gz-files.xml
+svccfg import /opt/custom/smf/persist-gz-files.xml
 
 echo "*************************************************************"
 echo "In order to use tools such as usermod, please do the following:"

@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
 <service_bundle type='manifest' name='export'>
-  <service name='site/persist-userfiles' type='service' version='0'>
+  <service name='site/persist-gz-files' type='service' version='0'>
     <create_default_instance enabled='true'/>
     <single_instance/>
     <dependency name='filesystem' grouping='require_all' restart_on='error' type='service'>
@@ -11,8 +11,8 @@
       <service_fmri value='svc:/site/install-userfiles'/>
     </dependency>
     <method_context/>
-    <exec_method name='start' type='method' exec='/opt/custom/method/persist-userfiles start' timeout_seconds='60'/>
-    <exec_method name='stop' type='method' exec='/opt/custom/method/persist-userfiles stop' timeout_seconds='60'/>
+    <exec_method name='start' type='method' exec='/opt/custom/method/persist-gz-files start' timeout_seconds='60'/>
+    <exec_method name='stop' type='method' exec='/opt/custom/method/persist-gz-files stop' timeout_seconds='60'/>
     <property_group name='startd' type='framework'>
       <propval name='duration' type='astring' value='transient'/>
       <propval name='ignore_error' type='astring' value='core,signal'/>

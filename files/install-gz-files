@@ -13,10 +13,16 @@ case "$1" in
       ukf=/usbkey/$(basename ${file})
       test -e $ukf && touch $ukf
     done
-    
+
     if [[ -e /usbkey/user_attr ]]; then
       cp /usbkey/user_attr /etc/user_attr
     fi
+
+    HOSTNAME=$(hostname)
+    cat <<EOF >/etc/inet/hosts
+::1 localhost
+127.0.0.1 localhost loghost ${HOSTNAME} ${HOSTNAME}.localdomain
+EOF
   fi
   ;;
 esac

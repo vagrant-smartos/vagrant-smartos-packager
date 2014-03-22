@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # See https://vagrantcloud.com/livinginthepast for SmartOS boxes
-  config.vm.box = "livinginthepast/SmartOS-base64-13.3.1"
+  config.vm.box = "livinginthepast/smartos-base64-13.4.0"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   #config.vm.network "private_network", ip: "192.168.50.4"
@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.synced_folder ".", "/zones/vagrant", type: "rsync"
 
   # Requires vagrant plugin at https://github.com/sax/vagrant-smartos-zones
-  config.global_zone.platform_image = '20140312T071408Z'
+  #config.global_zone.platform_image = '20140321T062644Z'
 
   config.zone.name = 'base64'
   config.zone.brand = 'joyent'

@@ -30,10 +30,11 @@ Now log in via ssh:
 ssh localhost -p 2222 -l root
 ```
 
-and run the following command:
+### Creating barebones global zone
 
 ```bash
-curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_global_zone | bash -s
+curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_global_zone \
+ | bash -s
 ```
 
 This will install custom services that will load on boot, updating the
@@ -44,16 +45,32 @@ between boots, so we have to do some tweaking.
 Now run the following:
 
 ```bash
-curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_gz_users | bash -s
+curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_gz_users \
+ | bash -s
 ```
 
 This will create a vagrant user. By default Vagrant expects the vagrant
 user and root to have the password set to `vagrant`.
 
+### Creating global zone with image imported
+
+If you are creating a box with an image already imported, instead of
+the above instructions you can jump straight to:
+
+```bash
+curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_for_lz \
+  | bash -s [image_uuid]
+```
+
+### Installing sudo
+
 If sudo will be required in the global zone, run the following command:
 ```bash
-curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/install_sudo | bash -s
+curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/install_sudo \
+ | bash -s
 ```
+
+### Creating box
 
 Now stop the VM, and run the following command to load it into Vagrant:
 

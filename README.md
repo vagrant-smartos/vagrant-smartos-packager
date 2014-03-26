@@ -97,4 +97,7 @@ config.vm.synced_folder ".", "/vagrant", disabled: true
 Synced folders of type `nfs` will work, pending a pull request on
 Vagrant.
 
+## Contributing
 
+When making a pull request, make sure to `/cc @sax` in the description. Otherwise
+I don't seem to get notified.

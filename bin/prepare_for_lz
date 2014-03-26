@@ -3,7 +3,7 @@
 image=$1
 
 if [ -z "$image" ]; then
-  echo "Usage: $0 [image_uuid] >&2
+  echo "Usage: $0 [image_uuid]" >&2
   exit 1
 fi
 curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_global_zone | bash -s

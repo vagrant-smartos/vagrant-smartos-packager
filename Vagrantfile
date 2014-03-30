@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.zone.name = 'base64'
   config.zone.brand = 'joyent'
-  config.zone.image = 'c353c568-69ad-11e3-a248-db288786ea63'
+  config.zone.image = 'ff86eb8a-a069-11e3-ae0e-4f3c8983a91c'
   config.zone.memory = 2048
   config.zone.disk_size = 5
 end

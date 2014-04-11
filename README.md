@@ -5,12 +5,13 @@ Create Vagrant boxes of the latest SmartOS platform image.
 
 This repository includes scripts to help create SmartOS Vagrant
 boxes. The box created will be a Vagrant-capable global zone,
-into which local zones can be installed with a TBD vagrant plugin
-for managing local zones.
+into which local zones can be installed with the vagrant plugin
+[vagrant-smartos-zones](https://github.com/sax/vagrant-smartos-zones).
 
 ## Dependencies
 
-* VirtualBox
+* VirtualBox >= 4.3
+* Vagrant >= 1.5.2
 
 ## Usage
 
@@ -52,6 +53,14 @@ curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_g
 This will create a vagrant user. By default Vagrant expects the vagrant
 user and root to have the password set to `vagrant`.
 
+Now clean up some scraps before shutting it down and boxifying:
+
+```bash
+curl -k https://raw.github.com/sax/vagrant-smartos-packager/master/bin/cleanup_gz \
+ | bash -s
+```
+
+
 ### Creating global zone with image imported
 
 If you are creating a box with an image already imported, instead of
@@ -77,6 +86,19 @@ Now stop the VM, and run the following command to load it into Vagrant:
 ```bash
 ./bin/boxify
 ```
+
+**What to name the box?**
+
+* SmartOS-<platform_image>-<image_type>-<image_version>
+* SmartOS-20140404T001635Z
+* SmartOS-20140404T001635Z-base64-13.4.1
+
+Although these box names are pretty long, they don't have to match the
+box name in Vagrant Cloud. As a file name, this encapsulates all the
+variables that went into its creation.
+
+Vagrant Cloud links to these boxes can be more terse, and rely on
+versioning to abstract away much of this detail.
 
 ## Vagrant configurations
 

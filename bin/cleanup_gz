@@ -6,3 +6,6 @@ cp /dev/null /var/adm/messages
 cp /dev/null /var/log/syslog
 cp /dev/null /var/adm/wtmpx
 cp /dev/null /var/adm/utmpx
+
+echo "Shutting down, now boxify"
+shutdown -y -i5 -g0

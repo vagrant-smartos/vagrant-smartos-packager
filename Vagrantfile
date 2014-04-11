@@ -5,6 +5,13 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  unless Vagrant.has_plugin?('vagrant-smartos-zones')
+    puts "vagrant-smartos-zones plugin is missing. Installing..."
+    %x(set -x; vagrant plugin install vagrant-smartos-zones)
+    puts "Now try again."
+    exit
+  end
+
   config.vm.provider "virtualbox" do |v|
     v.memory = 3072
   end

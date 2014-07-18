@@ -14,5 +14,5 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.global_zone.platform_image = '20140404T001635Z'
+  config.global_zone.platform_image = '20140710T224431Z'
 end

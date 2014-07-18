@@ -8,7 +8,7 @@ echo "*************************************************************"
 echo "Installing pkgin"
 if [[ -z "$(which pkg_admin)" ]]; then
   cd /
-  curl --silent -k http://pkgsrc.joyent.com/packages/SmartOS/bootstrap/bootstrap-2013Q3-x86_64.tar.gz | gzcat | tar -xf -
+  wget -q -O- --no-check-certificate http://pkgsrc.joyent.com/packages/SmartOS/bootstrap/bootstrap-2013Q3-x86_64.tar.gz | gzcat | tar -xf -
   pkg_admin rebuild
 fi
 pkgin -y up

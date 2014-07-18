@@ -2,8 +2,8 @@
 #
 # Site for SmartOS platform image
 #
-latest_smartos_path=$(curl --silent "https://us-east.manta.joyent.com/Joyent_Dev/public/SmartOS/latest")
-dlsite="https://us-east.manta.joyent.com${latest_smartos_path}"
+readonly LATEST_SMARTOS_PATH=$(curl --silent "https://us-east.manta.joyent.com/Joyent_Dev/public/SmartOS/latest")
+readonly DLSITE="https://us-east.manta.joyent.com${LATEST_SMARTOS_PATH}"
 
 
 #
@@ -52,7 +52,7 @@ function require_smartos_sums {
 
   if [ ! -e tmp/smartos-sums.txt ]; then
     echo "Downloading smartos sum" >&2
-    curl --silent -o tmp/smartos-sums.txt ${dlsite}/md5sums.txt 2>/dev/null
+    curl --silent -o tmp/smartos-sums.txt ${DLSITE}/md5sums.txt 2>/dev/null
   fi
 }
 
@@ -77,7 +77,7 @@ function smartos_ISO_path {
   local vmname=$(smartos_vmname)
   local smartos_version=$(smartos_version)
 
-  echo "${vboxdir}/${vmname}/smartos-${smartos_version}.iso"
+  echo "${vboxdir}/${vmname}/${smartos_version}.iso"
 }
 
 function download_smartos_ISO {
@@ -90,9 +90,9 @@ function download_smartos_ISO {
 
   mkdir -p "${vboxdir}/${vmname}"
   if [ ! -f "${iso_path}" ]; then
-    echo "Downloading ${dlsite}/smartos-${smartos_version}.iso"
+    echo "Downloading ${DLSITE}/${smartos_version}.iso"
     curl -o ${iso_path} \
-            ${dlsite}/smartos-${smartos_version}.iso
+            ${DLSITE}/smartos-${smartos_version}.iso
     dl_md5=$(${md5sum} "${iso_path}" \
                | awk '{ print $'${column}' }')
     if [ -z "${dl_md5}" ]; then
@@ -128,7 +128,7 @@ function create_smartos_VM {
     # VM already exists, just update the ISO image
     VBoxManage storageattach "${vmname}" --storagectl "IDE Controller" \
       --port 1 --device 0 --type dvddrive \
-      --medium "${vboxdir}/${vmname}/smartos-${smartos_version}.iso"
+      --medium "${vboxdir}/${vmname}/${smartos_version}.iso"
   else
     # Create the VM
     VBoxManage createvm --name "${vmname}" --ostype OpenSolaris_64 --register
@@ -137,7 +137,7 @@ function create_smartos_VM {
     # Attach the ISO image
     VBoxManage storageattach "${vmname}" --storagectl "IDE Controller" \
       --port 1 --device 0 --type dvddrive \
-      --medium "${vboxdir}/${vmname}/smartos-${smartos_version}.iso"
+      --medium "${vboxdir}/${vmname}/${smartos_version}.iso"
 
     # Create and attach the zone disk
     VBoxManage createhd --filename "${vboxdir}/${vmname}/smartos-zones.vdi" \

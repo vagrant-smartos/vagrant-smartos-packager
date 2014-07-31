@@ -3,10 +3,13 @@ echo "Switching system into user modifiable state"
 
 svcadm disable -s persist-gz-files
 
+echo "*************************************************************"
+echo "Creating vagrant group"
+groupadd vagrant
 
 echo "*************************************************************"
 echo "Creating vagrant user"
-useradd -d /usbkey/vagrant -m -s /bin/bash vagrant
+useradd -d /usbkey/vagrant -m -s /bin/bash -G vagrant vagrant
 usermod -P'Primary Administrator' vagrant
 
 

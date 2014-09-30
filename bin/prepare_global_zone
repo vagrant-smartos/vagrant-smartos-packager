@@ -3,11 +3,11 @@ echo "Updating system to allow user modification"
 mkdir -p /opt/custom/smf
 mkdir -p /opt/custom/method
 
-wget -q --no-check-certificate https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-gz-files -O /opt/custom/method/install-gz-files
-wget -q --no-check-certificate https://raw.github.com/sax/vagrant-smartos-packager/master/files/install-gz-files.xml -O /opt/custom/smf/install-gz-files.xml
+wget -q --no-check-certificate https://raw.github.com/vagrant-smartos/vagrant-smartos-packager/master/files/install-gz-files -O /opt/custom/method/install-gz-files
+wget -q --no-check-certificate https://raw.github.com/vagrant-smartos/vagrant-smartos-packager/master/files/install-gz-files.xml -O /opt/custom/smf/install-gz-files.xml
 
-wget -q --no-check-certificate https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-gz-files -O /opt/custom/method/persist-gz-files
-wget -q --no-check-certificate https://raw.github.com/sax/vagrant-smartos-packager/master/files/persist-gz-files.xml -O /opt/custom/smf/persist-gz-files.xml
+wget -q --no-check-certificate https://raw.github.com/vagrant-smartos/vagrant-smartos-packager/master/files/persist-gz-files -O /opt/custom/method/persist-gz-files
+wget -q --no-check-certificate https://raw.github.com/vagrant-smartos/vagrant-smartos-packager/master/files/persist-gz-files.xml -O /opt/custom/smf/persist-gz-files.xml
 
 chmod -R +x /opt/custom/method
 

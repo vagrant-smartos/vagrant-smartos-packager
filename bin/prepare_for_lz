@@ -6,12 +6,12 @@ if [ -z "$image" ]; then
   echo "Usage: $0 [image_uuid]" >&2
   exit 1
 fi
-wget -q --no-check-certificate -O- https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_global_zone | bash -s
-wget -q --no-check-certificate -O- https://raw.github.com/sax/vagrant-smartos-packager/master/bin/prepare_gz_users | bash -s
+wget -q --no-check-certificate -O- https://raw.github.com/vagrant-smartos/vagrant-smartos-packager/master/bin/prepare_global_zone | bash -s
+wget -q --no-check-certificate -O- https://raw.github.com/vagrant-smartos/vagrant-smartos-packager/master/bin/prepare_gz_users | bash -s
 
 imgadm import ${image}
 
-wget -q --no-check-certificate -O- https://raw.github.com/sax/vagrant-smartos-packager/master/bin/cleanup_gz | bash -s
+wget -q --no-check-certificate -O- https://raw.github.com/vagrant-smartos/vagrant-smartos-packager/master/bin/cleanup_gz | bash -s
 
 echo "DONE"
 echo "Now shutdown guest and boxify"

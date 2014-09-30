@@ -6,7 +6,7 @@ Create Vagrant boxes of the latest SmartOS platform image.
 This repository includes scripts to help create SmartOS Vagrant
 boxes. The box created will be a Vagrant-capable global zone,
 into which local zones can be installed with the vagrant plugin
-[vagrant-smartos-zones](https://github.com/sax/vagrant-smartos-zones).
+[vagrant-smartos-zones](https://github.com/vagrant-smartos/vagrant-smartos-zones).
 
 ## Dependencies
 
@@ -34,7 +34,7 @@ ssh localhost -p 2222 -l root
 ### Creating barebones global zone
 
 ```bash
-wget -q -O- --no-check-certificate https://raw.githubusercontent.com/sax/vagrant-smartos-packager/master/bin/prepare_global_zone \
+wget -q -O- --no-check-certificate https://raw.githubusercontent.com/vagrant-smartos/vagrant-smartos-packager/master/bin/prepare_global_zone \
  | bash -s
 ```
 
@@ -46,7 +46,7 @@ between boots, so we have to do some tweaking.
 Now run the following:
 
 ```bash
-wget -q -O- --no-check-certificate https://raw.githubusercontent.com/sax/vagrant-smartos-packager/master/bin/prepare_gz_users \
+wget -q -O- --no-check-certificate https://raw.githubusercontent.com/vagrant-smartos/vagrant-smartos-packager/master/bin/prepare_gz_users \
  | bash -s
 ```
 
@@ -56,7 +56,7 @@ user and root to have the password set to `vagrant`.
 Now clean up some scraps before shutting it down and boxifying:
 
 ```bash
-wget -q -O- --no-check-certificate https://raw.githubusercontent.com/sax/vagrant-smartos-packager/master/bin/cleanup_gz \
+wget -q -O- --no-check-certificate https://raw.githubusercontent.com/vagrant-smartos/vagrant-smartos-packager/master/bin/cleanup_gz \
  | bash -s
 ```
 
@@ -67,7 +67,7 @@ If you are creating a box with an image already imported, instead of
 the above instructions you can jump straight to:
 
 ```bash
-wget -q -O- --no-check-certificate https://raw.githubusercontent.com/sax/vagrant-smartos-packager/master/bin/prepare_for_lz \
+wget -q -O- --no-check-certificate https://raw.githubusercontent.com/vagrant-smartos/vagrant-smartos-packager/master/bin/prepare_for_lz \
   | bash -s [image_uuid]
 ```
 
@@ -75,7 +75,7 @@ wget -q -O- --no-check-certificate https://raw.githubusercontent.com/sax/vagrant
 
 If sudo will be required in the global zone, run the following command:
 ```bash
-wget -q -O- --no-check-certificate https://raw.githubusercontent.com/sax/vagrant-smartos-packager/master/bin/install_sudo \
+wget -q -O- --no-check-certificate https://raw.githubusercontent.com/vagrant-smartos/vagrant-smartos-packager/master/bin/install_sudo \
  | bash -s
 ```
 

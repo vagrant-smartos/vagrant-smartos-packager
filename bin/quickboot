@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# create a directory to mount the boot image into
+mkdir -p /var/tmp/boot
+
+# mount the image (is c0t0d0p1 always the same?)
+mount -F pcfs /dev/dsk/c0t0d0p1 /var/tmp/boot
+
+# modify grub
+sed 's/timeout=.*/timeout=0/g' /var/tmp/boot/boot/grub/menu.lst > /var/tmp/boot/boot/grub/menu.lst.tmp 
+mv /var/tmp/boot/boot/grub/menu.lst.tmp /var/tmp/boot/boot/grub/menu.lst
+
+# unmount
+umount /var/tmp/boot
+
+# cleanup
+rm -rf /var/tmp/boot

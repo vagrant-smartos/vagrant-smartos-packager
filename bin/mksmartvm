@@ -17,8 +17,8 @@ usage() {
   echo "  -p --sshport    SSH port to forward (default 2222)"
 }
 
-DISKSIZE="32"
-MEMSIZE="1024"
+DISKSIZE="100"
+MEMSIZE="2048"
 SSHPORT="2222"
 
 while getopts ":d:m:p:" arg; do
@@ -39,4 +39,4 @@ echo
 echo "Starting Virtual Machine"
 echo "  Hint: use defaults"
 echo "  Hint: set root password to 'vagrant'"
-VirtualBox --startvm "${vmname}" &
+VirtualBoxVM --startvm "${vmname}" &
